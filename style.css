@@ -12,3 +12,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+#container {
+  border: 1px solid black;
+  display: grid;
+  padding: 15% 15% 15% 15%;
+}
