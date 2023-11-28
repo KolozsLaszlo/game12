@@ -1,11 +1,11 @@
 #gamearea {
   border: 1px solid black;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Négy azonos szélességű oszlop */
-  gap: 5px; /* 5px-es rés az oszlopok között */
-  height: 300px; /* Példaként fix magasság beállítása */
-  position: relative; /* relatív pozíció beállítása a gamearea-hoz */
-  overflow: hidden; /* Az overflow elrejti a tartalmat, amely kilógna a gamearea-ból */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 5px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
 }
 
 #container {
@@ -13,13 +13,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute; /* abszolút pozíció beállítása */
-  top: 50%; /* felső percre igazítás a gamearea-ban */
-  left: 50%; /* bal percre igazítás a gamearea-ban */
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(
     -50%,
     -50%
-  ); /* középre igazítás az abszolút pozícióhoz képest */
+  );
 }
 
 #gamearea div {
@@ -27,5 +27,5 @@
   height: 50px;
   border: 1px solid black;
   cursor: pointer;
-  margin-bottom: 5px; /* Térköz az elemek között */
+  margin-bottom: 5px;
 }
