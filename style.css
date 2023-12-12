@@ -1,7 +1,7 @@
 #gamearea {
   border: 1px solid black;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(4, 1fr);
   gap: 5px;
   height: 300px;
   position: relative;
@@ -16,10 +16,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(
-    -50%,
-    -50%
-  );
+  transform: translate(-50%, -50%);
 }
 
 #gamearea div {
@@ -28,4 +25,9 @@
   border: 1px solid black;
   cursor: pointer;
   margin-bottom: 5px;
+}
+
+#szamlalo {
+  text-align: center;
+  font-size: 30px;
 }
