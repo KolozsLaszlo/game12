@@ -5,6 +5,7 @@ const szamlalo = document.querySelector('#szamlalo')
 let ido = 0
 let idozito
 let NextNumber
+let idok = []
 
 function initNumbers() {
   for (let i = 0; i < 12; i++) {
@@ -38,6 +39,7 @@ function createBoxes() {
     })
   }
 }
+
 function fillBoxes() {
   const szamdobozok = gameArea.querySelectorAll('div')
   let i = 0
@@ -59,7 +61,12 @@ initNumbers()
 createBoxes()
 
 start.addEventListener('click', function () {
-  NextNumber = 1
+  NextNumber = 0
+  clearInterval(idozito)
+  ido = 0
   shuffleNumbers()
   fillBoxes()
+  startTimer()
+  NextNumber++
+  idok.push(ido)
 })
