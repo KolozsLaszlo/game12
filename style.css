@@ -37,3 +37,11 @@
 .rejtett {
   visibility: hidden;
 }
+
+#start {
+  position: fixed;
+  left: 40%;
+  top: 75%;
+  height: 150px;
+  width: 250px;
+}
