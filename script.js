@@ -1,47 +1,65 @@
-const gameArea = document.querySelector("#gamearea");
+const gameArea = document.querySelector('#gamearea')
+const start = document.querySelector('#start')
+let t = []
+const szamlalo = document.querySelector('#szamlalo')
+let ido = 0
+let idozito
+let NextNumber
 
-//#region ------- tömb feltöltés
-let t = [];
-for (let i = 0; i < 12; i++) {
-  t.push(i + 1);
+function initNumbers() {
+  for (let i = 0; i < 12; i++) {
+    t.push(i + 1)
+  }
 }
-//#endregion
 
-//#region -------- keverés
-for (let i = 0; i < 100; i++) {
-  let pos1 = Math.floor(Math.random() * 12);
-  let pos2 = Math.floor(Math.random() * 12);
-  let temp = t[pos1];
-  t[pos1] = t[pos2];
-  t[pos2] = temp;
+function shuffleNumbers() {
+  for (let i = 0; i < 100; i++) {
+    let pos1 = Math.floor(Math.random() * 12)
+    let pos2 = Math.floor(Math.random() * 12)
+    let temp = t[pos1]
+    t[pos1] = t[pos2]
+    t[pos2] = temp
+  }
 }
-//#endregion
-let NextNumber = 1;
-//#region  ------- Számok megjelenítése
-for (let i = 0; i < 12; i++) {
-  const szamDoboz = document.createElement("div");
-  szamDoboz.innerHTML = t[i];
-  gameArea.appendChild(szamDoboz);
 
-  szamDoboz.addEventListener("click", () => {
-    szamDoboz.classList.add("rejtett");
-    NextNumber++;
-    if (NextNumber == 13) {
-      clearInterval(idozito);
-    }
-  });
+function createBoxes() {
+  for (let i = 0; i < 12; i++) {
+    const szamDoboz = document.createElement('div')
+    // szamDoboz.innerHTML = t[i]
+    szamDoboz.classList.add('rejtett')
+    gameArea.appendChild(szamDoboz)
+
+    szamDoboz.addEventListener('click', () => {
+      szamDoboz.classList.add('rejtett')
+      NextNumber++
+      if (NextNumber == 13) {
+        clearInterval(idozito)
+      }
+    })
+  }
 }
-//#endregion
+function fillBoxes() {
+  const szamdobozok = gameArea.querySelectorAll('div')
+  let i = 0
+  for (szamDoboz of szamdobozok) {
+    szamDoboz.innerText = t[i]
+    szamDoboz.classList.remove('rejtett')
+    i++
+  }
+}
 
-//#region ------- stopper
+function startTimer() {
+  idozito = setInterval(function () {
+    szamlalo.innerHTML = ido / 10
+    ido++
+  }, 100)
+}
 
-const start = document.querySelector("#start");
-const szamlalo = document.querySelector("#szamlalo");
-let ido = 0;
-start.addEventListener("click", () => {
-  const idozito = setInterval(function () {
-    szamlalo.innerHTML = ido / 10;
-    ido++;
-  }, 100);
-});
-//#endregion
+initNumbers()
+createBoxes()
+
+start.addEventListener('click', function () {
+  NextNumber = 1
+  shuffleNumbers()
+  fillBoxes()
+})
