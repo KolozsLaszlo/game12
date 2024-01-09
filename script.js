@@ -5,7 +5,6 @@ const szamlalo = document.querySelector("#szamlalo");
 let ido = 0;
 let idozito;
 let NextNumber;
-let idok = [];
 
 function initNumbers() {
   for (let i = 0; i < 12; i++) {
@@ -25,16 +24,22 @@ function shuffleNumbers() {
 
 function createBoxes() {
   for (let i = 0; i < 12; i++) {
-    const szamDoboz = document.createElement("div");
-    // szamDoboz.innerHTML = t[i]
+    let szamDoboz = document.createElement("div");
+    // szamDoboz.innerText = t[i]
     szamDoboz.classList.add("rejtett");
     gameArea.appendChild(szamDoboz);
 
-    szamDoboz.addEventListener("click", () => {
-      szamDoboz.classList.add("rejtett");
-      NextNumber++;
-      if (NextNumber == 13) {
-        clearInterval(idozito);
+    szamDoboz.addEventListener("click", function () {
+      if (szamDoboz.innerText == nextNumber) {
+        szamDoboz.classList.add("rejtett");
+        nextNumber++;
+        //itt miután rákattintunk egy számra és az eltűnik, és az volt az utolsó, akkor
+        //kell megállítani a számlálót.
+        //A setInterval -lal létrehozott időzítő, az időzítő azonosítójának birtokában,
+        //A clearInterval paranccsal állítható le.
+        if (nextNumber == 13) {
+          clearInterval(idozito);
+        }
       }
     });
   }
@@ -61,12 +66,10 @@ initNumbers();
 createBoxes();
 
 start.addEventListener("click", function () {
-  NextNumber = 0;
   clearInterval(idozito);
+  nextNumber = 1;
   ido = 0;
   shuffleNumbers();
   fillBoxes();
   startTimer();
-  NextNumber++;
-  idok.push(ido);
 });
